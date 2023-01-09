@@ -79,9 +79,9 @@ function addToList(obj) {
     
     let c = obj[0];
 
-    const markup = obj.map(obj => `<li class="">
+    const markup = obj.map(obj => `<li class="country-list--item">
             <img src="${c.flags.svg}" alt="Country flag" width="40", height="30">
-            <span class="">${c.name.official}</span>
+            <span style="margin-left:10px;">${c.name.official}</span>
         </li>`).join("");
 
     refs.list.insertAdjacentHTML("beforeend", markup);
@@ -93,10 +93,10 @@ function addToListAndDiv(obj) {
     let c = obj[0];
 
 
-    const countryInfo = obj.map(obj => `<div class="">
-        <div class="">
+    const countryInfo = obj.map(obj => `<div class="country-card">
+        <div class="country-card--header">
             <img src="${c.flags.svg}" alt="Country flag" width="55", height="35">
-            <h2 class=""> ${c.name.official}</h2>
+            <h2 style="margin-left:10px;"> ${c.name.official}</h2>
         </div>
             <p class="">Capital: <span class="">${c.capital}</span></p>
             <p class="">Population: <span class="">${c.population}</span></p>

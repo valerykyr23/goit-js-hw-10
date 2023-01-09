@@ -18,3 +18,25 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+
+ul {
+  list-style: none;
+}
+
+.country-card {
+  display: inline-block;
+  
+}
+
+.country-card--header {
+  display: flex;
+  align-items: center;
+}
+
+.country-list--item {
+  display: flex;
+  align-items: center;
+
+}
+
