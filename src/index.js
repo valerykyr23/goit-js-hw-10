@@ -43,13 +43,13 @@ function onSearch(event) {
                     clearMarkup();
                     
                     addToListAndDiv(data);
-                    Notiflix.Notify.success('Here your result');
+                    Notiflix.Notify.success('Here is your result.');
                 }
                 else if (data.length < 10 && data.length > 1) {
                     clearMarkup();
                     
                     addToList(data);
-                    Notiflix.Notify.success('Here your results');
+                    Notiflix.Notify.success('Here is your results.');
                 }
                 else if (data.length >= 10) {
                     clearMarkup();
