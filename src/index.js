@@ -28,9 +28,10 @@ refs.input.addEventListener("input", _debounce(onSearch, DEBOUNCE_DELAY ));
 function onSearch(event) {
     
     inputValue = event.target.value.trim();
+
+    console.log(inputValue)
     
     if (inputValue === "") {
-
         clearMarkup();
 
         return;
@@ -39,7 +40,9 @@ function onSearch(event) {
      else {
         fetchCountries(inputValue)
             .then(data => {
-                if (data.length === 1) {
+
+                console.log(data)
+                if (data.length  === 1) {
                     clearMarkup();
                     
                     addToListAndDiv(data);
@@ -51,7 +54,7 @@ function onSearch(event) {
                     addToList(data);
                     Notiflix.Notify.success('Here is your results.');
                 }
-                else if (data.length >= 10) {
+                else  {
                     clearMarkup();
                     
                     return Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.')
@@ -67,8 +70,6 @@ function onSearch(event) {
 }
    
 
-   
-
 
 function callError (error) { 
 Notiflix.Notify.failure("Oops, there is no country with that name");
@@ -77,11 +78,11 @@ Notiflix.Notify.failure("Oops, there is no country with that name");
 
 function addToList(obj) {
     
-    let c = obj[0];
+    
 
     const markup = obj.map(obj => `<li class="country-list--item">
-            <img src="${c.flags.svg}" alt="Country flag" width="40", height="30">
-            <span style="margin-left:10px;">${c.name.official}</span>
+            <img src="${obj.flags.svg}" alt="Country flag" width="40", height="30">
+            <span style="margin-left:10px;font-size:24px;font-weight:400;">${obj.name.official}</span>
         </li>`).join("");
 
     refs.list.insertAdjacentHTML("beforeend", markup);
@@ -90,17 +91,17 @@ function addToList(obj) {
 
 function addToListAndDiv(obj) {
     
-    let c = obj[0];
+    
 
 
     const countryInfo = obj.map(obj => `<div class="country-card">
         <div class="country-card--header">
-            <img src="${c.flags.svg}" alt="Country flag" width="55", height="35">
-            <h2 style="margin-left:10px;"> ${c.name.official}</h2>
+            <img src="${obj.flags.svg}" alt="Country flag" width="55", height="55">
+            <h2 style="margin-left:10px;"> ${obj.name.official}</h2>
         </div>
-            <p class="">Capital: <span class="">${c.capital}</span></p>
-            <p class="">Population: <span class="">${c.population}</span></p>
-            <p class="">Languages: <span class="">${Object.values(c.languages)}</span></p>
+            <p style="font-size:24px;font-weight:bold;">Capital: <span style="font-size:20px;font-weight:400;">${obj.capital}</span></p>
+            <p style="font-size:24px;font-weight:bold;">Population: <span style="font-size:20px;font-weight:400;">${obj.population}</span></p>
+            <p style="font-size:24px;font-weight:bold;">Languages: <span style="font-size:20px;font-weight:400;">${Object.values(obj.languages)}</span></p>
     </div>`);
     refs.container.innerHTML = countryInfo.join("");
 
@@ -109,8 +110,12 @@ function addToListAndDiv(obj) {
 
 
 
+
 function clearMarkup () {
 
     refs.list.innerHTML = "";
     refs.container.innerHTML = "";
 }
+
+
+
